@@ -27,6 +27,7 @@ const sub = (data) => {
 <template>
   <div style="height: 90vh;overflow-y: auto;">
     <center><h4>训练包</h4></center>
+    <van-empty description="当前动作包为空" v-if="pkgs.length===0" />
     <div v-for="data in pkgs">
       <van-card price="免费" :num="data.count" :desc="data.stage" :title="data.name" :thumb="data.image">
         <template #tags>
