@@ -40,6 +40,7 @@ onUpdated(() => {
     </van-col>
   </van-row>
 </div>
+<van-back-top right="0" bottom="5vh" />
 </template>
 
 <style scoped>

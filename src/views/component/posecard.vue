@@ -1,10 +1,18 @@
 <script setup>
 import { defineProps, ref } from "vue"
-
-defineProps({
+import { usePosePkgStore } from '../../utils/store.js'
+import {showToast} from "vant";
+const props = defineProps({
   data: Object
 })
-
+const addPkg = () => {
+  if (usePosePkgStore().exists(props.data)) {
+    showToast({message: '动作包已存在', type: 'error'})
+    return
+  }
+  usePosePkgStore().add(props.data)
+  showToast({message: '添加成功', type: 'success'})
+}
 const show = ref(false)
 const showPopup = () => {
   show.value = true
@@ -36,7 +44,7 @@ const preprocessDescription = (desc) => {
       </template>
       <!-- 添加操作按钮 -->
       <template #footer>
-        <van-button icon="add-o" size="small" round type="success">加入训练包</van-button>
+        <van-button icon="add-o" size="small" round type="success" @click="addPkg">加入训练包</van-button>
       </template>
     </van-card>
 
@@ -48,7 +56,7 @@ const preprocessDescription = (desc) => {
     </template>
     <template #footer>
       <van-button  icon="info-o" type="primary" size="mini" @click="showPopup">查看</van-button>
-      <van-button  icon="add-o" type="success" size="mini">加入训练包</van-button>
+      <van-button  icon="add-o" type="success" size="mini" @click="addPkg">加入训练包</van-button>
     </template>
   </van-card>
 </template>
