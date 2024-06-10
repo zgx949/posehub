@@ -7,7 +7,8 @@ import { Button, Tabbar, TabbarItem,
         Sidebar, SidebarItem, Search,
         Col, Row, Card, Popup, ActionBar,
         ActionBarIcon, ActionBarButton,
-        Tag, Cell, CellGroup, SwipeCell
+        Tag, Cell, CellGroup, SwipeCell,
+        Calendar
 } from 'vant'
 
 const app = createApp(App)
@@ -17,5 +18,6 @@ app.use(Button).use(Tabbar).use(TabbarItem)
     .use(Col).use(Row).use(Card).use(Popup)
     .use(ActionBar).use(ActionBarIcon).use(ActionBarButton)
     .use(Tag).use(Cell).use(CellGroup).use(SwipeCell)
+    .use(Calendar)
 
 app.mount('#app')

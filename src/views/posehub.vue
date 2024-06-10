@@ -54,7 +54,7 @@ onMounted(() => {
     </van-col>
     <van-col :span="20">
       <div class="content">
-        <poselist></poselist>
+        <poselist :categoryId="active"></poselist>
       </div>
     </van-col>
   </van-row>

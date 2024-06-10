@@ -1,14 +1,30 @@
 <script setup>
-import {defineComponent, onMounted, ref} from "vue"
+import {defineComponent, onMounted, onUpdated, ref} from "vue"
 import Posecard from "./posecard.vue"
 import { getPoseList } from '../../api/posehub.js'
-const props = defineProps({})
-const poseList = ref([1,2,3,4])
-
-onMounted(() => {
-  getPoseList(1).then(res => {
-    poseList.value = res.data
+import {showLoadingToast} from "vant";
+const props = defineProps({
+  categoryId: {
+    type: Number,
+    required: true
+  }
+})
+const poseList = ref([])
+const getData = () => {
+  const t = showLoadingToast({
+    message: '加载中...',
+    forbidClick: true,
   })
+  getPoseList(props.categoryId).then(res => {
+    poseList.value = res.data
+    t.close()
+  })
+}
+onMounted(() => {
+  getData()
+})
+onUpdated(() => {
+  getData()
 })
 </script>
 
