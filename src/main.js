@@ -9,7 +9,7 @@ import { Button, Tabbar, TabbarItem,
         ActionBarIcon, ActionBarButton,
         Tag, Cell, CellGroup, SwipeCell,
         Calendar, BackTop, FloatingBubble,
-        Empty
+        Empty, Checkbox, CheckboxGroup
 } from 'vant'
 
 const app = createApp(App)
@@ -22,6 +22,6 @@ app.use(Button).use(Tabbar).use(TabbarItem)
     .use(ActionBar).use(ActionBarIcon).use(ActionBarButton)
     .use(Tag).use(Cell).use(CellGroup).use(SwipeCell)
     .use(Calendar).use(BackTop).use(FloatingBubble)
-    .use(Empty)
+    .use(Empty).use(Checkbox).use(CheckboxGroup)
 
 app.mount('#app')

@@ -1,21 +1,35 @@
 <script setup>
 import { defineProps, ref } from "vue"
 import { usePosePkgStore } from '../../utils/store.js'
-import {showToast} from "vant";
+import {showToast} from "vant"
 const props = defineProps({
   data: Object
 })
+
+
+const showCycle = ref(false)
+const days = ref(['周一','周二','周三','周四','周五','周六','周天'])
+const selectedDays = ref([false, false, false, false, false, false, false])
+
+const showCyclePopup = () => {
+  showCycle.value = true
+}
+
+
 const addPkg = () => {
   if (usePosePkgStore().exists(props.data)) {
     showToast({message: '动作包已存在', type: 'error'})
     return
   }
-  usePosePkgStore().add(props.data)
+  let data = {...props.data, selectedDays: selectedDays.value}
+  usePosePkgStore().add(data)
   showToast({message: '添加成功', type: 'success'})
+  showCycle.value = false
 }
-const show = ref(false)
+const showDetail = ref(false)
+
 const showPopup = () => {
-  show.value = true
+  showDetail.value = true
 }
 
 const preprocessDescription = (desc) => {
@@ -25,7 +39,7 @@ const preprocessDescription = (desc) => {
 </script>
 
 <template>
-  <van-popup v-model:show="show" :style="{ width: '90%' }" closeable round>
+  <van-popup v-model:show="showDetail" :style="{ width: '90%' }" closeable round>
     <center><h4>{{ data.name }}</h4></center>
     <div>
       <video controls autoplay muted loop width="100%" height="30%">
@@ -44,10 +58,9 @@ const preprocessDescription = (desc) => {
       </template>
       <!-- 添加操作按钮 -->
       <template #footer>
-        <van-button icon="add-o" size="small" round type="success" @click="addPkg">加入训练包</van-button>
+        <van-button icon="add-o" size="small" round type="success" @click="showCyclePopup">加入训练包</van-button>
       </template>
     </van-card>
-
   </van-popup>
   <van-card price="免费" :desc="data.stage" :title="data.name" :thumb="data.image">
     <template #tags>
@@ -56,9 +69,25 @@ const preprocessDescription = (desc) => {
     </template>
     <template #footer>
       <van-button  icon="info-o" type="primary" size="mini" @click="showPopup">查看</van-button>
-      <van-button  icon="add-o" type="success" size="mini" @click="addPkg">加入训练包</van-button>
+      <van-button  icon="add-o" type="success" size="mini" @click="showCyclePopup">加入训练包</van-button>
     </template>
   </van-card>
+  <van-popup v-model:show="showCycle" style="height: 30%; padding: 16px;" closeable round>
+      <div class="training-cycle">
+      <span>请选择训练周期：</span>
+       <van-row gutter="12">
+         <van-col span="10" v-for="(day, index) in days" :key="index">
+           <van-checkbox
+               style="margin: 10px"
+               size="small"
+               v-model="selectedDays[index]"
+             >{{ day }}
+           </van-checkbox>
+         </van-col>
+       </van-row>
+     </div>
+     <van-button block type="primary" @click="addPkg">确定</van-button>
+   </van-popup>
 </template>
 
 <style scoped>
