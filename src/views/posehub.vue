@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted, ref} from "vue"
-import {showToast} from "vant"
+import {showLoadingToast, showToast} from "vant"
 import {getPoseCategory} from "../api/posehub.js"
 import Poselist from "./component/poselist.vue";
 const active = ref(0)
@@ -15,8 +15,13 @@ const onSearch = (val) => showToast(val)
 const onClickButton = () => showToast(searchValue.value)
 
 onMounted(() => {
+  const t = showLoadingToast({
+    message: '加载中...',
+    forbidClick: true,
+  })
   getPoseCategory().then(res => {
     poseCategory.value = res.data
+    t.close()
   })
 })
 

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-disscuss
+训练包
 </template>
 
 <style scoped>

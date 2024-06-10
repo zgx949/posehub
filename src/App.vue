@@ -19,7 +19,7 @@ const select = (name) => {
   <van-tabbar v-model="active" @change="select">
     <van-tabbar-item icon="home-o" name="home">首页</van-tabbar-item>
     <van-tabbar-item icon="search" name="posehub">动作库</van-tabbar-item>
-    <van-tabbar-item icon="friends-o" name="discuss">讨论</van-tabbar-item>
+    <van-tabbar-item icon="friends-o" name="training-pkg">训练包</van-tabbar-item>
     <van-tabbar-item icon="setting-o" name="me">我的</van-tabbar-item>
   </van-tabbar>
 </template>
