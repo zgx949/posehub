@@ -16,7 +16,7 @@ const select = (name) => {
 
 <template>
   <router-view />
-  <van-tabbar v-model="active" @change="select">
+  <van-tabbar v-model="active" @change="select" class="tabbar">
     <van-tabbar-item icon="home-o" name="home">首页</van-tabbar-item>
     <van-tabbar-item icon="search" name="posehub">动作库</van-tabbar-item>
     <van-tabbar-item icon="friends-o" name="training-pkg">训练包</van-tabbar-item>
@@ -25,6 +25,9 @@ const select = (name) => {
 </template>
 
 <style scoped>
+.tabbar {
+  padding-bottom: 20px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

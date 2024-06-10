@@ -1,5 +1,9 @@
 <script setup>
+import {showToast} from "vant";
 
+const check = () => {
+  showToast({message: '打卡成功', type: 'success'})
+}
 </script>
 
 <template>
@@ -10,7 +14,7 @@
       :style="{ height: '50vh' }"
   />
   <center>
-    <van-button type="success" class="check">打卡</van-button>
+    <van-button type="success" class="check" @click="check">打卡</van-button>
   </center>
 </template>
 
