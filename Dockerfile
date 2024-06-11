@@ -16,7 +16,7 @@ RUN yarn install -g
 RUN yarn build
 
 # 第二步：构建Nginx镜像并部署构建后的静态文件
-FROM nginx:alpine
+FROM nginx:latest
 
 # 移除默认的Nginx配置文件
 #RUN rm /etc/nginx/conf.d/default.conf
