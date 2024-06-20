@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 // 设置基础URL
-const BASE_URL = 'http://posehub.lefthand.top/api';
+// const BASE_URL = 'http://posehub.lefthand.top/api';
+const BASE_URL = '/api';
 
 // 创建axios实例
 const request = axios.create({
